@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
+import { movieApi } from '../api';
 
-const Favs = ({ navigation }) => {
+const Favs = () => {
+  const [movies, setMovies] = useState({
+    results: [],
+    error: null,
+  });
+  const getData = async () => {
+    const [results, error] = await movieApi.discover();
+    setMovies({
+      results,
+      error,
+    });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
-    <View>
-      <Text>Favs</Text>
+    <View style={{ flex: 1, backgroundColor: '#000000' }}>
+      <Text style={{ color: '#ffffff' }}>{movies.results?.length}</Text>
     </View>
   );
 };
