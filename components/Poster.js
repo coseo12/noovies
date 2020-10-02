@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
+import { apiImage } from '../api';
 
 const Image = styled.Image`
   width: 100px;
@@ -8,10 +9,10 @@ const Image = styled.Image`
   border-radius: 4px;
 `;
 
-const Poster = ({ url }) => <Image source={{ uri: url }} />;
-
-Poster.prototype = {
-  url: PropTypes.string.isRequired,
+const Poster = ({ url }) =>
+  url ? <Image source={{ uri: apiImage(url) }} /> : <Image />;
+Poster.propTypes = {
+  url: PropTypes.string,
 };
 
 export default Poster;

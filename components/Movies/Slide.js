@@ -3,7 +3,9 @@ import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
 import { apiImage } from '../../api';
+import { trimText } from '../../utils';
 import Poster from '../Poster';
+import Votes from '../Votes';
 
 const Container = styled.View`
   height: 100%;
@@ -36,10 +38,8 @@ const Title = styled.Text`
   margin-bottom: 7px;
 `;
 
-const Votes = styled.Text`
-  color: rgb(220, 220, 220);
-  margin-bottom: 5px;
-  font-size: 12px;
+const VotesContainer = styled.View`
+  margin-bottom: 7px;
 `;
 
 const Overview = styled.Text`
@@ -51,7 +51,7 @@ const Overview = styled.Text`
 const Button = styled.View`
   margin-top: 10px;
   background-color: #e74c3c;
-  padding: 5px 10px;
+  padding: 7px 10px;
   border-radius: 3px;
 `;
 
@@ -63,19 +63,14 @@ const Slide = ({ id, title, backgroundImage, votes, overview, poster }) => {
   return (
     <Container>
       <BG source={{ uri: apiImage(backgroundImage) }} />
-
       <Content>
-        <Poster url={apiImage(poster)} />
+        <Poster url={poster} />
         <Data>
-          <Title>
-            {title.slice(0, 30)}
-            {title.length > 30 ? '...' : ''}
-          </Title>
-          <Votes>⭐️ {votes} / 10</Votes>
-          <Overview>
-            {overview.slice(0, 120)}
-            {overview.length > 120 ? '...' : ''}
-          </Overview>
+          <Title>{trimText(title, 20)}</Title>
+          <VotesContainer>
+            <Votes votes={votes} />
+          </VotesContainer>
+          <Overview>{trimText(overview, 100)}</Overview>
           <TouchableOpacity>
             <Button>
               <ButtonText>View details</ButtonText>

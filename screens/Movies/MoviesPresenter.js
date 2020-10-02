@@ -1,46 +1,67 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import Swiper from 'react-native-web-swiper';
-import { ActivityIndicator, Dimensions } from 'react-native';
 import Slide from '../../components/Movies/Slide';
+import Vertical from '../../components/Vertical';
+import Horizontal from '../../components/Horizontal';
+import ScrollContainer from '../../components/ScrollContainer';
+import HorizontalSlider from '../../components/HorizontalSlider';
+import SliderContainer from '../../components/SliderContainer';
+import List from '../../components/List';
+import PropTypes from 'prop-types';
 
-const { width: WIDTH, height: HEIGHT } = Dimensions.get('screen');
+const Container = styled.View``;
 
-const Container = styled.View`
-  flex: 1;
-  background-color: #000000;
-  justify-content: center;
-`;
-
-const SliderContainer = styled.View`
-  width: ${WIDTH}px;
-  height: ${HEIGHT / 4}px;
-`;
-
-const MoviesPresenter = ({ loading, nowPlaying }) => {
+const MoviesPresenter = ({ loading, nowPlaying, popular, upcoming }) => {
   return (
-    <Container>
-      {loading ? (
-        <ActivityIndicator color="#ffffff" size="small" />
-      ) : (
-        <SliderContainer>
-          <Swiper controlsEnabled={false} loop timeout={3}>
-            {nowPlaying.map(movie => (
-              <Slide
-                key={movie.id}
-                id={movie.id}
-                title={movie.original_title}
-                overview={movie.overview}
-                votes={movie.vote_average}
-                backgroundImage={movie.backdrop_path}
-                poster={movie.poster_path}
-              />
-            ))}
-          </Swiper>
-        </SliderContainer>
-      )}
-    </Container>
+    <ScrollContainer loading={loading}>
+      <SliderContainer>
+        {nowPlaying.map(movie => (
+          <Slide
+            key={movie.id}
+            id={movie.id}
+            title={movie.original_title}
+            overview={movie.overview}
+            votes={movie.vote_average}
+            backgroundImage={movie.backdrop_path}
+            poster={movie.poster_path}
+          />
+        ))}
+      </SliderContainer>
+      <Container>
+        <HorizontalSlider title={'Popular Movies'}>
+          {popular.map(movie => (
+            <Vertical
+              key={movie.id}
+              id={movie.id}
+              poster={movie.poster_path}
+              title={movie.original_title}
+              votes={movie.vote_average}
+            />
+          ))}
+        </HorizontalSlider>
+        <List title={'Coming soon'}>
+          {upcoming.map(movie => (
+            <Horizontal
+              key={movie.id}
+              id={movie.id}
+              poster={movie.poster_path}
+              title={movie.original_title}
+              votes={movie.vote_average}
+              overview={movie.overview}
+              releaseDate={movie.release_date}
+            />
+          ))}
+        </List>
+      </Container>
+    </ScrollContainer>
   );
+};
+
+MoviesPresenter.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  nowPlaying: PropTypes.array.isRequired,
+  popular: PropTypes.array.isRequired,
+  upcoming: PropTypes.array.isRequired,
 };
 
 export default MoviesPresenter;
