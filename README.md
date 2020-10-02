@@ -1,5 +1,17 @@
-# React Native
+# React Native - Noovies
 
-Example
+React Native Movies Example
 
-developing...
+## Expo Options
+
+i - iOS
+a - Android
+w - webpack
+
+## Category
+
+- [x] Movies
+- [x] TV Shows
+- [ ] Search
+- [ ] Discovery
+- [ ] Detail
