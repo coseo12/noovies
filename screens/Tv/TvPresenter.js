@@ -7,7 +7,7 @@ import Vertical from '../../components/Vertical';
 import Horizontal from '../../components/Horizontal';
 import List from '../../components/List';
 import SliderContainer from '../../components/SliderContainer';
-import Slide from '../../components/Movies/Slide';
+import Slide from '../../components/Slide';
 
 const Container = styled.View`
   margin-top: 30px;
@@ -61,7 +61,7 @@ const TvPresenter = ({ loading, popular, topRated, today, thisWeek }) => {
               title={show.name}
               votes={show.vote_average}
               overview={show.overview}
-              releaseDate={show.release_date}
+              releaseDate={show.first_air_date}
             ></Horizontal>
           ))}
         </List>

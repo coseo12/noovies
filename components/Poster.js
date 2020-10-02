@@ -9,8 +9,15 @@ const Image = styled.Image`
   border-radius: 4px;
 `;
 
+const Blank = styled.View`
+  width: 100px;
+  height: 160px;
+  border-radius: 4px;
+  background-color: #eeeeee;
+`;
+
 const Poster = ({ url }) =>
-  url ? <Image source={{ uri: apiImage(url) }} /> : <Image />;
+  url ? <Image source={{ uri: apiImage(url) }} /> : <Blank />;
 Poster.propTypes = {
   url: PropTypes.string,
 };

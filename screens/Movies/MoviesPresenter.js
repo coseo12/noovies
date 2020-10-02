@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import Slide from '../../components/Movies/Slide';
+import Slide from '../../components/Slide';
 import Vertical from '../../components/Vertical';
 import Horizontal from '../../components/Horizontal';
 import ScrollContainer from '../../components/ScrollContainer';

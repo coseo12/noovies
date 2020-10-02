@@ -2,10 +2,10 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
-import { apiImage } from '../../api';
-import { trimText } from '../../utils';
-import Poster from '../Poster';
-import Votes from '../Votes';
+import { apiImage } from '../api';
+import { trimText } from '../utils';
+import Poster from './Poster';
+import Votes from './Votes';
 
 const Container = styled.View`
   height: 100%;
