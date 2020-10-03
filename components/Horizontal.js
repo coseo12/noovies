@@ -1,6 +1,6 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
+import TouchableBtn from './TouchableBtn';
 import PropTypes from 'prop-types';
 import Poster from './Poster';
 import { trimText, formatDate } from '../utils';
@@ -34,9 +34,27 @@ const ReleaseDate = styled.Text`
   font-size: 12px;
 `;
 
-const Horizontal = ({ id, poster, title, releaseDate, overview }) => {
+const Horizontal = ({
+  id,
+  poster,
+  title,
+  releaseDate,
+  overview,
+  backgroundImage,
+  votes,
+  isTv,
+}) => {
   return (
-    <TouchableOpacity>
+    <TouchableBtn
+      id={id}
+      title={title}
+      poster={poster}
+      votes={votes}
+      overview={overview}
+      backgroundImage={backgroundImage}
+      releaseDate={releaseDate}
+      isTv={isTv}
+    >
       <Container>
         <Poster url={poster} />
         <Data>
@@ -47,7 +65,7 @@ const Horizontal = ({ id, poster, title, releaseDate, overview }) => {
           <Overview>{trimText(overview, 110)}</Overview>
         </Data>
       </Container>
-    </TouchableOpacity>
+    </TouchableBtn>
   );
 };
 
@@ -55,8 +73,11 @@ Horizontal.propTypes = {
   id: PropTypes.number.isRequired,
   poster: PropTypes.string,
   title: PropTypes.string.isRequired,
-  overview: PropTypes.string.isRequired,
+  votes: PropTypes.number,
+  backgroundImage: PropTypes.string,
+  overview: PropTypes.string,
   releaseDate: PropTypes.string,
+  isTv: PropTypes.bool,
 };
 
 export default Horizontal;

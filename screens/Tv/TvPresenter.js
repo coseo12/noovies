@@ -40,6 +40,8 @@ const TvPresenter = ({
             votes={show.vote_average}
             backgroundImage={show.backdrop_path}
             poster={show.poster_path}
+            releaseDate={show.first_air_date}
+            isTv={true}
           />
         ))}
       </SliderContainer>
@@ -47,33 +49,43 @@ const TvPresenter = ({
         <HorizontalSlider title={'Popular Shows'}>
           {popular.map(show => (
             <Vertical
+              isTv={true}
               key={`popular_${show.id}`}
               id={show.id}
               poster={show.poster_path}
               title={show.name}
               votes={show.vote_average}
+              overview={show.overview}
+              backgroundImage={show.backdrop_path}
+              releaseDate={show.first_air_date}
             />
           ))}
         </HorizontalSlider>
         <HorizontalSlider title={'Top Rated'}>
           {topRated.map(show => (
             <Vertical
+              isTv={true}
               key={`rated_${show.id}`}
               id={show.id}
               poster={show.poster_path}
               title={show.name}
               votes={show.vote_average}
+              backgroundImage={show.backdrop_path}
+              overview={show.overview}
+              releaseDate={show.first_air_date}
             />
           ))}
         </HorizontalSlider>
         <List title={'Airing Today'}>
           {today.map(show => (
             <Horizontal
+              isTv={true}
               key={`airing_${show.id}`}
               id={show.id}
               poster={show.poster_path}
               title={show.name}
               votes={show.vote_average}
+              backgroundImage={show.backdrop_path}
               overview={show.overview}
               releaseDate={show.first_air_date}
             ></Horizontal>

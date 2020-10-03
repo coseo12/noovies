@@ -37,6 +37,7 @@ const MoviesPresenter = ({
             votes={movie.vote_average}
             backgroundImage={movie.backdrop_path}
             poster={movie.poster_path}
+            releaseDate={movie.release_date}
           />
         ))}
       </SliderContainer>
@@ -49,6 +50,9 @@ const MoviesPresenter = ({
               poster={movie.poster_path}
               title={movie.original_title}
               votes={movie.vote_average}
+              overview={movie.overview}
+              releaseDate={movie.release_date}
+              backgroundImage={movie.backdrop_path}
             />
           ))}
         </HorizontalSlider>
@@ -62,6 +66,7 @@ const MoviesPresenter = ({
               votes={movie.vote_average}
               overview={movie.overview}
               releaseDate={movie.release_date}
+              backgroundImage={movie.backdrop_path}
             />
           ))}
         </List>

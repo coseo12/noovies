@@ -1,6 +1,6 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
+import TouchableBtn from './TouchableBtn';
 import PropTypes from 'prop-types';
 import { apiImage } from '../api';
 import { trimText } from '../utils';
@@ -59,7 +59,16 @@ const ButtonText = styled.Text`
   color: #ffffff;
 `;
 
-const Slide = ({ id, title, backgroundImage, votes, overview, poster }) => {
+const Slide = ({
+  id,
+  title,
+  backgroundImage,
+  votes,
+  overview,
+  poster,
+  releaseDate,
+  isTv,
+}) => {
   return (
     <Container>
       <BG source={{ uri: apiImage(backgroundImage) }} />
@@ -71,11 +80,20 @@ const Slide = ({ id, title, backgroundImage, votes, overview, poster }) => {
             <Votes votes={votes} />
           </VotesContainer>
           <Overview>{trimText(overview, 100)}</Overview>
-          <TouchableOpacity>
+          <TouchableBtn
+            id={id}
+            title={title}
+            poster={poster}
+            backgroundImage={backgroundImage}
+            votes={votes}
+            overview={overview}
+            releaseDate={releaseDate}
+            isTv={isTv}
+          >
             <Button>
               <ButtonText>View details</ButtonText>
             </Button>
-          </TouchableOpacity>
+          </TouchableBtn>
         </Data>
       </Content>
     </Container>
@@ -84,11 +102,13 @@ const Slide = ({ id, title, backgroundImage, votes, overview, poster }) => {
 
 Slide.propTypes = {
   id: PropTypes.number.isRequired,
+  poster: PropTypes.string,
   title: PropTypes.string.isRequired,
-  backgroundImage: PropTypes.string.isRequired,
-  votes: PropTypes.number.isRequired,
-  overview: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired,
+  votes: PropTypes.number,
+  backgroundImage: PropTypes.string,
+  overview: PropTypes.string,
+  releaseDate: PropTypes.string,
+  isTv: PropTypes.bool,
 };
 
 export default Slide;

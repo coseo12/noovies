@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import TouchableBtn from './TouchableBtn';
 import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
 import Poster from './Poster';
@@ -17,15 +17,33 @@ const Title = styled.Text`
   margin: 10px 0 5px 0;
 `;
 
-const Vertical = ({ id, poster, title, votes }) => {
+const Vertical = ({
+  id,
+  poster,
+  title,
+  votes,
+  overview,
+  backgroundImage,
+  releaseDate,
+  isTv,
+}) => {
   return (
-    <TouchableOpacity>
+    <TouchableBtn
+      id={id}
+      title={title}
+      poster={poster}
+      votes={votes}
+      overview={overview}
+      backgroundImage={backgroundImage}
+      releaseDate={releaseDate}
+      isTv={isTv}
+    >
       <Container>
         <Poster url={poster} />
         <Title>{trimText(title, 12)}</Title>
         <Votes votes={votes} />
       </Container>
-    </TouchableOpacity>
+    </TouchableBtn>
   );
 };
 
@@ -33,7 +51,11 @@ Vertical.propTypes = {
   id: PropTypes.number.isRequired,
   poster: PropTypes.string,
   title: PropTypes.string.isRequired,
-  votes: PropTypes.number.isRequired,
+  votes: PropTypes.number,
+  backgroundImage: PropTypes.string,
+  overview: PropTypes.string,
+  releaseDate: PropTypes.string,
+  isTv: PropTypes.bool,
 };
 
 export default Vertical;

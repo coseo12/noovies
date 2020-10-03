@@ -1,11 +1,11 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import Title from './Title';
 import Proptypes from 'prop-types';
 
 const HorizontalSlider = ({ title, children }) => {
   return (
-    <>
+    <View>
       <Title title={title}></Title>
       <ScrollView
         contentContainerStyle={{
@@ -18,7 +18,7 @@ const HorizontalSlider = ({ title, children }) => {
       >
         {children}
       </ScrollView>
-    </>
+    </View>
   );
 };
 
