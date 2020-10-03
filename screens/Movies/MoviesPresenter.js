@@ -11,9 +11,22 @@ import PropTypes from 'prop-types';
 
 const Container = styled.View``;
 
-const MoviesPresenter = ({ loading, nowPlaying, popular, upcoming }) => {
+const MoviesPresenter = ({
+  loading,
+  nowPlaying,
+  popular,
+  upcoming,
+  refreshFn,
+}) => {
   return (
-    <ScrollContainer loading={loading}>
+    <ScrollContainer
+      contentContainerStyle={{
+        flex: loading ? 1 : 'auto',
+        justifyContent: loading ? 'center' : 'flex-start',
+      }}
+      refreshFn={refreshFn}
+      loading={loading}
+    >
       <SliderContainer>
         {nowPlaying.map(movie => (
           <Slide
@@ -62,6 +75,7 @@ MoviesPresenter.propTypes = {
   nowPlaying: PropTypes.array.isRequired,
   popular: PropTypes.array.isRequired,
   upcoming: PropTypes.array.isRequired,
+  refreshFn: PropTypes.func.isRequired,
 };
 
 export default MoviesPresenter;

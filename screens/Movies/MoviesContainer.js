@@ -31,7 +31,7 @@ const Movies = () => {
     getData();
   }, []);
 
-  return <MoviesPresenter {...movies} />;
+  return <MoviesPresenter refreshFn={getData} {...movies} />;
 };
 
 export default Movies;

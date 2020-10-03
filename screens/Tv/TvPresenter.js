@@ -13,9 +13,23 @@ const Container = styled.View`
   margin-top: 30px;
 `;
 
-const TvPresenter = ({ loading, popular, topRated, today, thisWeek }) => {
+const TvPresenter = ({
+  loading,
+  popular,
+  topRated,
+  today,
+  thisWeek,
+  refreshFn,
+}) => {
   return (
-    <ScrollContailer loading={loading}>
+    <ScrollContailer
+      contentContainerStyle={{
+        flex: loading ? 1 : 'auto',
+        justifyContent: loading ? 'center' : 'flex-start',
+      }}
+      refreshFn={refreshFn}
+      loading={loading}
+    >
       <SliderContainer>
         {thisWeek.map(show => (
           <Slide
@@ -76,6 +90,7 @@ TvPresenter.proptypes = {
   topRated: PropTypes.array.isRequired,
   today: PropTypes.array.isRequired,
   thisWeek: PropTypes.array.isRequired,
+  refreshFn: PropTypes.func.isRequired,
 };
 
 export default TvPresenter;

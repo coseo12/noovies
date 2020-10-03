@@ -4,8 +4,8 @@ import styled from 'styled-components/native';
 
 const TextInput = styled.TextInput`
   background-color: #ffffff;
-  margin: 0 30px 30px 30px;
-  padding: 5px 20px;
+  margin: 0 30px 50px 30px;
+  padding: 10px 20px;
   border-radius: 15px;
 `;
 

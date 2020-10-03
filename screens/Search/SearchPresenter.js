@@ -4,15 +4,11 @@ import Input from '../../components/Input';
 import PropTypes from 'prop-types';
 import HorizontalSlider from '../../components/HorizontalSlider';
 import Vertical from '../../components/Vertical';
-
-const Container = styled.ScrollView`
-  background-color: #000000;
-  padding-top: 10px;
-`;
+import ScrollContainer from '../../components/ScrollContainer';
 
 const SearchPresenter = ({ movies, shows, keyword, onChange, onSubmit }) => {
   return (
-    <Container>
+    <ScrollContainer refreshFn={onSubmit} loading={false}>
       <Input
         placeholder={'Write a keyword'}
         value={keyword}
@@ -49,7 +45,7 @@ const SearchPresenter = ({ movies, shows, keyword, onChange, onSubmit }) => {
           ))}
         </HorizontalSlider>
       )}
-    </Container>
+    </ScrollContainer>
   );
 };
 
