@@ -17,7 +17,7 @@ const MoviesPresenter = ({ loading, nowPlaying, popular, upcoming }) => {
       <SliderContainer>
         {nowPlaying.map(movie => (
           <Slide
-            key={movie.id}
+            key={`now_${movie.id}`}
             id={movie.id}
             title={movie.original_title}
             overview={movie.overview}
@@ -31,7 +31,7 @@ const MoviesPresenter = ({ loading, nowPlaying, popular, upcoming }) => {
         <HorizontalSlider title={'Popular Movies'}>
           {popular.map(movie => (
             <Vertical
-              key={movie.id}
+              key={`popular_${movie.id}`}
               id={movie.id}
               poster={movie.poster_path}
               title={movie.original_title}
@@ -42,7 +42,7 @@ const MoviesPresenter = ({ loading, nowPlaying, popular, upcoming }) => {
         <List title={'Coming soon'}>
           {upcoming.map(movie => (
             <Horizontal
-              key={movie.id}
+              key={`upcoming_${movie.id}`}
               id={movie.id}
               poster={movie.poster_path}
               title={movie.original_title}

@@ -19,7 +19,7 @@ const TvPresenter = ({ loading, popular, topRated, today, thisWeek }) => {
       <SliderContainer>
         {thisWeek.map(show => (
           <Slide
-            key={show.id}
+            key={`week_${show.id}`}
             id={show.id}
             title={show.name}
             overview={show.overview}
@@ -33,7 +33,7 @@ const TvPresenter = ({ loading, popular, topRated, today, thisWeek }) => {
         <HorizontalSlider title={'Popular Shows'}>
           {popular.map(show => (
             <Vertical
-              key={show.id}
+              key={`popular_${show.id}`}
               id={show.id}
               poster={show.poster_path}
               title={show.name}
@@ -44,7 +44,7 @@ const TvPresenter = ({ loading, popular, topRated, today, thisWeek }) => {
         <HorizontalSlider title={'Top Rated'}>
           {topRated.map(show => (
             <Vertical
-              key={show.id}
+              key={`rated_${show.id}`}
               id={show.id}
               poster={show.poster_path}
               title={show.name}
@@ -55,7 +55,7 @@ const TvPresenter = ({ loading, popular, topRated, today, thisWeek }) => {
         <List title={'Airing Today'}>
           {today.map(show => (
             <Horizontal
-              key={show.id}
+              key={`airing_${show.id}`}
               id={show.id}
               poster={show.poster_path}
               title={show.name}
