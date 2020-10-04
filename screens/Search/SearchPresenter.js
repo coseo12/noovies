@@ -34,6 +34,7 @@ const SearchPresenter = ({ movies, shows, keyword, onChange, onSubmit }) => {
         <HorizontalSlider title={'TV results'}>
           {shows.map(show => (
             <Vertical
+              isTv={true}
               key={show.id}
               id={show.id}
               poster={show.poster_path}

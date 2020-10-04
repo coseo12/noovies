@@ -24,7 +24,7 @@ export const movieApi = {
   popular: () => getAnything('/movie/popular'),
   upcoming: () => getAnything('/movie/upcoming', { region: 'kr' }),
   search: query => getAnything('/search/movie', { query }),
-  movie: id => getAnything(`/movie/${id}`, { append_to_response: 'video' }),
+  movie: id => getAnything(`/movie/${id}`, { append_to_response: 'videos' }),
   discover: () => getAnything('/discover/movie'),
 };
 
@@ -34,7 +34,7 @@ export const tvApi = {
   topRated: () => getAnything('/tv/top_rated'),
   popular: () => getAnything('/tv/popular'),
   search: query => getAnything('/search/tv', { query }),
-  show: id => getAnything(`/tv/${id}`, { append_to_response: 'video' }),
+  show: id => getAnything(`/tv/${id}`, { append_to_response: 'videos' }),
 };
 
 export const apiImage = (

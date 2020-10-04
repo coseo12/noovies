@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
-import { movieApi } from '../api';
+import FavsPresenter from './FavsPresenter';
+import { movieApi } from '../../api';
 
-const Favs = () => {
+const FavsContainer = () => {
   const [movies, setMovies] = useState({
     results: [],
     error: null,
@@ -19,11 +19,7 @@ const Favs = () => {
     getData();
   }, []);
 
-  return (
-    <View style={{ flex: 1, backgroundColor: '#000000' }}>
-      <Text style={{ color: '#ffffff' }}>{movies.results?.length}</Text>
-    </View>
-  );
+  return <FavsPresenter {...movies} />;
 };
 
-export default Favs;
+export default FavsContainer;

@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { ActivityIndicator, Dimensions } from 'react-native';
+import { ActivityIndicator, Dimensions, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import ScrollContainer from '../../components/ScrollContainer';
 import Poster from '../../components/Poster';
 import Votes from '../../components/Votes';
+import Links from '../../components/Link';
 import { apiImage } from '../../api';
 import { formatDate } from '../../utils';
 
@@ -58,7 +59,7 @@ const DataValue = styled.Text`
   font-weight: 500;
 `;
 
-const DetailPresenter = ({ results, loading, refreshFn }) => {
+const DetailPresenter = ({ results, loading, refreshFn, openBrowser }) => {
   return (
     <ScrollContainer
       refreshFn={refreshFn}
@@ -76,21 +77,21 @@ const DetailPresenter = ({ results, loading, refreshFn }) => {
         </Container>
       </Header>
       <Data>
-        {results.overview && (
+        {results.overview ? (
           <>
             <DataName>Overview</DataName>
             <DataValue>{results.overview}</DataValue>
           </>
-        )}
-        {results.spoken_languages && (
+        ) : null}
+        {results.spoken_languages ? (
           <>
             <DataName>Language</DataName>
             <DataValue>
               {results.spoken_languages.map(l => `${l.name} `)}
             </DataValue>
           </>
-        )}
-        {(results.release_date || results.first_air_date) && (
+        ) : null}
+        {results.release_date || results.first_air_date ? (
           <>
             <DataName>
               {results.release_date ? 'Release Date' : 'First Air Date'}
@@ -103,20 +104,20 @@ const DetailPresenter = ({ results, loading, refreshFn }) => {
               )}
             </DataValue>
           </>
-        )}
-        {results.status && (
+        ) : null}
+        {results.status ? (
           <>
             <DataName>Status</DataName>
             <DataValue>{results.status}</DataValue>
           </>
-        )}
-        {results.runtime && (
+        ) : null}
+        {results.runtime ? (
           <>
             <DataName>Runtime</DataName>
             <DataValue>{results.runtime} minutes</DataValue>
           </>
-        )}
-        {results.genres && (
+        ) : null}
+        {results.genres ? (
           <>
             <DataName>Genres</DataName>
             <DataValue>
@@ -125,17 +126,43 @@ const DetailPresenter = ({ results, loading, refreshFn }) => {
               )}
             </DataValue>
           </>
-        )}
-
-        {results.number_of_episodes && (
+        ) : null}
+        {results.number_of_episodes ? (
           <>
             <DataName>Seasons / Episodes</DataName>
             <DataValue>
               {results.number_of_seasons} / {results.number_of_episodes}
             </DataValue>
           </>
-        )}
-        {loading && (
+        ) : null}
+        {results.imdb_id ? (
+          <>
+            <DataName>Links</DataName>
+            <Links
+              onPress={() =>
+                openBrowser(`https://www.imdb.com/title/${results.imdb_id}`)
+              }
+              text={'IMDB Page'}
+              icon={'imdb'}
+            />
+          </>
+        ) : null}
+        {results.videos.results?.length > 0 ? (
+          <>
+            <DataName>Videos</DataName>
+            {results.videos.results.map(video => (
+              <Links
+                text={video.name}
+                key={video.id}
+                icon={'youtube-play'}
+                onPress={() =>
+                  openBrowser(`https://www.youtube.com/watch?v=${video.key}`)
+                }
+              />
+            ))}
+          </>
+        ) : null}
+        {loading ? (
           <ActivityIndicator
             style={{
               marginTop: 30,
@@ -143,7 +170,7 @@ const DetailPresenter = ({ results, loading, refreshFn }) => {
             color="#ffffff"
             size="small"
           />
-        )}
+        ) : null}
       </Data>
     </ScrollContainer>
   );

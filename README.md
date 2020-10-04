@@ -13,5 +13,5 @@ w - webpack
 - [x] Movies
 - [x] TV Shows
 - [x] Search
-- [ ] Detail
-- [ ] Discovery
+- [x] Detail
+- [x] Discovery

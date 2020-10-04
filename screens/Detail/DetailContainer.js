@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useState, useEffect } from 'react';
 import DetailPresenter from './DetailPresenter';
 import { movieApi, tvApi } from '../../api';
+import * as WebBrowser from 'expo-web-browser';
 
 const DetailContainer = ({
   navigation,
@@ -26,6 +27,9 @@ const DetailContainer = ({
       backgroundImage,
       overview,
       releaseDate,
+      videos: {
+        results: [],
+      },
     },
   });
 
@@ -44,8 +48,9 @@ const DetailContainer = ({
         votes: getDetail.vote_average,
       },
     });
-    console.log(getDetailError);
   };
+
+  const openBrowser = async url => await WebBrowser.openBrowserAsync(url);
 
   useEffect(() => {
     getData();
@@ -55,7 +60,13 @@ const DetailContainer = ({
     navigation.setOptions({ title });
   });
 
-  return <DetailPresenter {...detail} refreshFn={getData} />;
+  return (
+    <DetailPresenter
+      {...detail}
+      openBrowser={openBrowser}
+      refreshFn={getData}
+    />
+  );
 };
 
 export default DetailContainer;
